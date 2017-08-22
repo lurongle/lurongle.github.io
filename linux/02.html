@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>用Linux命令执行PHP 的CI框架</title>
+<meta name="keywords" content="CI" />
+<meta name="description" content="CI" />
+<link href="../public/css/base.css" rel="stylesheet">
+<link href="../public/css/main.css" rel="stylesheet">
+<!--[if lt IE 9]>
+<script src="../public/js/modernizr.js"></script>
+<![endif]-->
+<script type="text/javascript" src="../public/js/jquery.js"></script>
+</head>
+<body>
+<div id="wrapper">
+  <header>
+    <div class="headtop"></div>
+    <div class="contenttop">
+      <div class="logo f_l">个人博客——MrCool</div>
+      <div class="search f_r">
+        <div id="time" style="margin: 0px;padding: 0px;font-size: 20px;color: #000000;"> 
+            <script> 
+              document.getElementById('time').innerHTML=new Date().toLocaleString(); 
+              setInterval("document.getElementById('time').innerHTML=new Date().toLocaleString();",1000); 
+            </script> 
+        </div>
+      </div>
+      <div class="blank"></div>
+        <nav>
+          <div  class="navigation">
+            <ul class="menu">
+              <li><a href="https://lurongle.github.io/">网站首页</a></li>
+              <li><a href="php.html">PHP</a>
+              </li>
+              <li><a href="#">缓存</a>
+                <ul>
+                  <li><a href="../redis.html">Redis</a></li>
+                  <li><a href="../memcache.html">Memcache</a></li>
+                </ul>
+              </li>
+              <li><a href="../mysql.html">MySQL</a> </li>
+              <li><a href="../linux.html">Linux</a> </li>
+              <li><a href="../about.html">个人简介</a> </li>
+            </ul>
+          </div>
+        </nav>
+      <SCRIPT type=text/javascript>
+	// Navigation Menu
+	$(function() {
+		$(".menu ul").css({display: "none"}); // Opera Fix
+		$(".menu li").hover(function(){
+			$(this).find('ul:first').css({visibility: "visible",display: "none"}).slideDown("normal");
+		},function(){
+			$(this).find('ul:first').css({visibility: "hidden"});
+		});
+	});
+</SCRIPT> 
+    </div>
+  </header>
+  <div class="container">
+    <div class="con_content">
+      <div class="about_box">
+        <h2 class="nh1"><span>您现在的位置是：<a href="https://lurongle.github.io/" target="_blank">网站首页</a>>><a href="../linux.html" target="_blank">Linux</a></span><b>Linux</b></h2>
+        <div class="f_box">
+          <p class="a_title">用Linux命令执行PHP 的CI框架</p>
+          <p class="p_title"></p>
+        </div>
+        <ul class="about_content">
+          <p>执行方法 进入到CI框架的根目录下： php index.php 控制器 方法</p>
+          <p>我在goods控制器上的index方法输出 43 执行如下：</p>
+            <p>
+              <b>[root@localhost ~]# php /www/myphp/index.php goods index </b><br>
+              &nbsp;&nbsp;<b>43 [root@localhost ~]# </b>
+            </p>
+        </ul>
+
+      </div>
+    </div>
+    <div class="blank"></div>
+  </div>
+  <!-- container代码 结束 -->
+  
+  <footer>
+    <div class="footer">
+      <div class="f_l">
+          <p>All Rights Reserved 版权所有：<a href="https://lurongle.github.io/">个人博客</a> 备案号：粤ICP备00000000号</p>
+        </div>
+        <div class="f_r textr">
+          <p>Design by DanceSmile</p>
+        </div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
