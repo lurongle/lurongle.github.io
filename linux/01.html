@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Centos7 samba的安裝</title>
+<meta name="keywords" content="samba" />
+<meta name="description" content="samba" />
+<link href="../public/css/base.css" rel="stylesheet">
+<link href="../public/css/main.css" rel="stylesheet">
+<!--[if lt IE 9]>
+<script src="../public/js/modernizr.js"></script>
+<![endif]-->
+<script type="text/javascript" src="../public/js/jquery.js"></script>
+</head>
+<body>
+<div id="wrapper">
+  <header>
+    <div class="headtop"></div>
+    <div class="contenttop">
+      <div class="logo f_l">个人博客——MrCool</div>
+      <div class="search f_r">
+        <div id="time" style="margin: 0px;padding: 0px;font-size: 20px;color: #000000;"> 
+            <script> 
+              document.getElementById('time').innerHTML=new Date().toLocaleString(); 
+              setInterval("document.getElementById('time').innerHTML=new Date().toLocaleString();",1000); 
+            </script> 
+        </div>
+      </div>
+      <div class="blank"></div>
+        <nav>
+          <div  class="navigation">
+            <ul class="menu">
+              <li><a href="https://lurongle.github.io/">网站首页</a></li>
+              <li><a href="php.html">PHP</a>
+              </li>
+              <li><a href="#">缓存</a>
+                <ul>
+                  <li><a href="../redis.html">Redis</a></li>
+                  <li><a href="../memcache.html">Memcache</a></li>
+                </ul>
+              </li>
+              <li><a href="../mysql.html">MySQL</a> </li>
+              <li><a href="../linux.html">Linux</a> </li>
+              <li><a href="../about.html">个人简介</a> </li>
+            </ul>
+          </div>
+        </nav>
+      <SCRIPT type=text/javascript>
+	// Navigation Menu
+	$(function() {
+		$(".menu ul").css({display: "none"}); // Opera Fix
+		$(".menu li").hover(function(){
+			$(this).find('ul:first').css({visibility: "visible",display: "none"}).slideDown("normal");
+		},function(){
+			$(this).find('ul:first').css({visibility: "hidden"});
+		});
+	});
+</SCRIPT> 
+    </div>
+  </header>
+  <div class="container">
+    <div class="con_content">
+      <div class="about_box">
+        <h2 class="nh1"><span>您现在的位置是：<a href="https://lurongle.github.io/" target="_blank">网站首页</a>>><a href="../linux.html" target="_blank">Linux</a></span><b>Linux</b></h2>
+        <div class="f_box">
+          <p class="a_title">Centos7 samba的安裝</p>
+          <p class="p_title"></p>
+        </div>
+        <ul class="about_content">
+          <p>为了实现Windows主机与Linux服务器之间的资源共享，linux操作系统提供了Samba服务，Samba服务为两种不同的操作系统架起了一座桥梁，使Linux系统和Windows系统之间能够实现互相通信</p>
+          <p style="font-size: 20px;"><b>安装前的准备</b></p>
+          <p style="font-size: 18px;"><b>1.关闭防火墙</b></p>
+            <p>
+              第一种方法 关闭防火墙 <br>
+              systemctl disable firewalld.service <br>
+              第二种方法 添加规则 <br>
+              firewall-cmd –permanent –zone=public –add-service=samba <br>
+              firewall-cmd –reload <br>
+            </p>
+          <p style="font-size: 18px;"><b>2.关闭selinux</b></p>
+            <p>
+              vim /etc/selinux/config <br>
+              &nbsp;&nbsp;<b style="color: red;">SELINUX=disabled </b><br>
+            </p>
+
+          <p>开始安装</p>
+          <p>
+            yum install samba samba-client samba-common -y <br>
+            &nbsp;&nbsp;备份配置文件 <br>
+            &nbsp;&nbsp;mv /etc/samba/smb.conf /etc/samba/smb.conf.bkp <br>
+            &nbsp;&nbsp;添加新的配置 <br>
+            &nbsp;&nbsp;vim /etc/samba/smb.conf br <br>
+            &nbsp;&nbsp;写入以下内容
+          </p>
+          <p style="color: red;"><br>
+            [global]  <br>
+            workgroup = WORKGROUP <br>
+            server string = Samba Server %v <br>
+            netbios name = centos <br>
+            security = user <br>
+            map to guest = bad user <br>
+            dns proxy = no <br>
+            #============================ Share Definitions ==============================  <br>
+            [Public] <br>
+            path = /data/share/ <br>
+            writable = yes <br>
+            browsable = yes <br>
+            guest ok = yes <br>
+            guest only = yes <br>
+            create mode = 0777 <br>
+            directory mode = 0777 <br>
+          </p>
+        <p>配置启动服务 </p> 
+        <p> <br>
+          mkdir -p /data/share/public <br>
+          systemctl enable smb.service <br>
+          systemctl enable nmb.service <br>
+          systemctl restart smb.service <br>
+          systemctl restart nmb.service
+        </p>
+          
+        <p>设置防火墙</p>  
+        <p> <br>
+          firewall-cmd --permanent --zone=public --add-service=samba <br>
+          firewall-cmd --reload
+        </p>
+
+        <b style="color: #000000;">如果使用的是iptables则需要添加以下规则</b>
+        <p style="color: red;"> <br>
+          vi /etc/sysconfig/iptables #防火墙配置文件 <br>
+          -A INPUT -p tcp -m state --state NEW -m tcp --dport 139 -j ACCEPT <br>
+          -A INPUT -p tcp -m state --state NEW -m tcp --dport 445 -j ACCEPT <br>
+          -A INPUT -p udp -m state --state NEW -m udp --dport 137 -j ACCEPT <br>
+          -A INPUT -p udp -m state --state NEW -m udp --dport 138 -j ACCEPT
+        </p>
+        <p>修改目录访问权限 </p>
+        <p> <br>
+        chmod -R 0755 public <br>
+        chown -R nobody:nobody public
+        </p>
+        </ul>
+
+      </div>
+    </div>
+    <div class="blank"></div>
+  </div>
+  <!-- container代码 结束 -->
+  
+  <footer>
+    <div class="footer">
+      <div class="f_l">
+          <p>All Rights Reserved 版权所有：<a href="https://lurongle.github.io/">个人博客</a> 备案号：粤ICP备00000000号</p>
+        </div>
+        <div class="f_r textr">
+          <p>Design by DanceSmile</p>
+        </div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

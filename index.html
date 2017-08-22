@@ -22,11 +22,11 @@
 	    <div class="contenttop">
 	      <div class="logo f_l">个人博客——MrCool</div>
 	      <div class="search f_r">
-            <div id="time" style="margin: 0px;padding: 0px;font-size: 20px;color: #000000;"> 
-    	        <script> 
-    		        document.getElementById('time').innerHTML=new Date().toLocaleString(); 
-    		        setInterval("document.getElementById('time').innerHTML=new Date().toLocaleString();",1000); 
-    	        </script> 
+            <div id="time" style="margin: 0px;padding: 0px;font-size: 20px;color: #49cd35;">
+    	        <script>
+    		        document.getElementById('time').innerHTML=new Date().toLocaleString();
+    		        setInterval("document.getElementById('time').innerHTML=new Date().toLocaleString();",1000);
+    	        </script>
             </div>
 	      </div>
 	      <div class="blank"></div>
@@ -34,20 +34,17 @@
 	        <div  class="navigation">
 	          <ul class="menu">
 	            <li><a href="https://lurongle.github.io/">网站首页</a></li>
-	            <li><a href="#">关于我</a>
+	            <li><a href="php.html">PHP</a>
+	            </li>
+	            <li><a href="#">缓存</a>
 	              <ul>
-	                <li><a href="about.html">个人简介</a></li>
-	                <li><a href="listpic.html">个人相册</a></li>
+	                <li><a href="redis.html">Redis</a></li>
+	                <li><a href="memcache.html">Memcache</a></li>
 	              </ul>
 	            </li>
-	            <li><a href="#">我的日记</a>
-	              <ul>
-	                <li><a href="newslistpic.html">个人日记</a></li>
-	                <li><a href="newslistpic.html">学习笔记</a></li>
-	              </ul>
-	            </li>
-	            <li><a href="technologylist.html">技术文章</a> </li>
-	            <li><a href="#">给我留言</a> </li>
+	            <li><a href="mysql.html">MySQL</a> </li>
+	            <li><a href="linux.html">Linux</a> </li>
+	            <li><a href="about.html">个人简介</a> </li>
 	          </ul>
 	        </div>
 	      </nav>
@@ -61,28 +58,28 @@
 				$(this).find('ul:first').css({visibility: "hidden"});
 			});
 		});
-	</SCRIPT> 
+	</SCRIPT>
 	    </div>
 	  </header>
 	  <div class="jztop"></div>
 	  <div class="container">
 	    <div class="bloglist f_l">
-	      <h3><a href="technology/01.html" target="_blank">Centos 连接时Redis报错</a></h3>
+	      <h3><a href="redis/01.html" target="_blank">Centos 连接时Redis报错</a></h3>
 	      <figure><img src="public/images/img_1.jpg" alt="Centos 连接时Redis报错"></figure>
 	      <ul>
 	        <p> 连接时Redis报错 ：Could not connect to Redis at 127.0.0.1:6379: Connection refused <br>
 	        1.在安装好Redis扩展 尝试连接redis时，客户端打不开，原因是需要先开启服务端，这需要先配置——</p>
-	        <a title="Centos 连接时Redis报错" href="technology/01.html" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
+	        <a title="Centos 连接时Redis报错" href="redis/01.html" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
 		  </ul>
-	      <p class="dateview"><span>2017-08-14</span><span>作者：MrCool</span><span>个人博客：[<a href="technologylist.html">技术文章</a>]</span></p>
+	      <p class="dateview"><span>2017-08-14</span><span>作者：MrCool</span><span>个人博客：[<a href="redis.html">Redis文章</a>]</span></p>
 
-	      <h3><a href="technology/02.html" target="_blank">Centos7 samba的安裝</a></h3>
+	      <h3><a href="linux/01.html" target="_blank">Centos7 samba的安裝</a></h3>
 	      <figure><img src="public/images/img_2.jpg" alt="Centos7 samba的安裝"></figure>
 	      <ul>
 	        <p>为了实现Windows主机与Linux服务器之间的资源共享，linux操作系统提供了Samba服务，Samba服务为两种不同的操作系统架起了一座桥梁，使Linux系统和Windows系统之间能够实现互相通信</p>
-	        <a title="Centos7 samba的安裝" href="technology/02.html" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
+	        <a title="Centos7 samba的安裝" href="linux/01.html" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
 	      </ul>
-	      <p class="dateview"><span>2017-08-14</span><span>作者：MrCool</span><span>个人博客：[<a href="technologylist.html">技术文章</a>]</span></p>
+	      <p class="dateview"><span>2017-08-14</span><span>作者：MrCool</span><span>个人博客：[<a href="linux.html">Linux文章</a>]</span></p>
 
 	      <h3><a href="technology/01.html" target="_blank">Centos 连接时Redis报错</a></h3>
 	      <figure><img src="public/images/img_1.jpg" alt="分享我的个人博客访问量如何做到IP从10到600的(图文)"></figure>
@@ -119,6 +116,8 @@
 	      <p class="dateview"><span>2017-08-14</span><span>作者：MrCool</span><span>个人博客：[<a href="technologylist.html">技术文章</a>]</span></p>
 
 	    </div>
+
+
 	    <div class="r_box f_r">
 	      <div class="tit01">
 	        <h3 class="tit">关注我</h3>
@@ -132,7 +131,7 @@
 	        </div>
 	      </div>
 	      <!--tit01 end-->
-	      
+
 	      <div class="tuwen">
 	        <h3 class="tit">图文推荐</h3>
 	        <ul>
